@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js"
 import authRoutes from "./routes/auth.route.js"
+import { errorHandler } from "./middleware/erros.js";
 
 dotenv.config();
 
@@ -26,6 +27,9 @@ app.get("/", (req,res)=> {
 // use routes
 app.use("/api/user", userRoutes)
 app.use("/api/auth", authRoutes)
+
+// middleware
+app.use(errorHandler)
 
 
 const port = 8080;
